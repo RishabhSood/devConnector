@@ -30,8 +30,58 @@ router.post('/', [auth, [
 
         res.json(newPost);
     } catch (err) {
-        console.log(err.message);
+        console.error(err.message);
         return res.status(500).send('Server Error');
+    }
+});
+
+// @route  GET api/posts
+// @desc   Get all posts
+// @access Private
+router.get('/', auth, async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ date: -1 });
+        res.json(posts);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route  GET api/posts/:post_id
+// @desc   Get post by id
+// @access Private
+router.get('/:post_id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.post_id);
+        if (!post) return res.status(400).json({ msg: "Post not found!" });
+        res.json(post);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') return res.status(400).json({ msg: "Post not found!" });
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route  DELETE api/posts/:post_id
+// @desc   Delete post by id
+// @access Private
+router.delete('/:post_id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.post_id);
+
+        if (!post)
+            return res.status(400).json({ msg: "Post not found!" });
+
+        if (post.user.toString() !== req.user.id)
+            return res.status(400).json({ msg: 'Invalid request!' });
+
+        await post.remove();
+        res.json({ msg: 'Post successfully deleted!' });
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') return res.status(400).json({ msg: "Post not found!" });
+        res.status(500).send('Server Error');
     }
 });
 
