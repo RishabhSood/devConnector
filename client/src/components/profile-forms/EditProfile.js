@@ -37,7 +37,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
             facebook: loading || !profile.social ? '' : profile.social.facebook,
             twitter: loading || !profile.social ? '' : profile.social.twitter,
             instagram: loading || !profile.social ? '' : profile.social.instagram,
-            linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+            linkedin: loading || !profile.social ? '' : profile.social.linkedin
         });
     }, [loading]);
 
@@ -190,7 +190,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
                         <div className="form-group sci">
                             <div className="styled">
                                 <i className="fab fa-linkedin fa-2x"></i>
-                                <input type="text" placeholder="Linkedin URL" name="linkedin" value={linkedin} onChange={e => onChange(e)} />
+                                <input type="text" placeholder="LinkedIn URL" name="linkedin" value={linkedin} onChange={e => onChange(e)} />
                             </div>
                         </div>
 
