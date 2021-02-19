@@ -4,10 +4,11 @@
   "description": "Social Network For Developers",
   "main": "server.js",
   "scripts": {
-    "start": "npm server",
+    "start": "npm run server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Rishabh Sood",
   "license": "MIT",
