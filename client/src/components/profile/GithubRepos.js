@@ -16,7 +16,7 @@ function GithubRepos({ username, getGithubRepos, repos }) {
                 </h2>
                 {repos === null ? <Spinner /> : (
                     repos.map(repo => (
-                        <div className="repo bg-white p-1 my-1" key={repo._id}>
+                        <div className="repo bg-white p-1 my-1" key={repo.id}>
                             <div>
                                 <h4><a href={repo.html_url} target="_blank"
                                     rel="noopener noreferrer">{repo.name}</a></h4>

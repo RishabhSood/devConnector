@@ -104,7 +104,7 @@ function AddEducation({ addEducation, history }) {
                     </div>
                 </div>
                 <input type="submit" className="btn btn-primary my-1" />
-                <Link class="btn btn-light my-1" to="/dashboard">Go Back</Link>
+                <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
             </form>
         </Fragment>
     )
